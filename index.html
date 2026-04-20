@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lynn's Store - Hostel Delivery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar - NO SELLER LINKS -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-store"></i>
+                <h1>Lynn's<span>Store</span></h1>
+            </div>
+            
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="nav-icons">
+                <a href="#" class="cart-icon" onclick="toggleCart(event)">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="welcome-badge">🏠 Hostel Delivery Service</span>
+                <h1>Lynn's Store</h1>
+                <p>• Chargers • Earphones • Pods • Sweets • Biscuits •• And More!</p>
+                <div class="hero-features">
+                    <span><i class="fas fa-bed"></i> Direct to Your Hostel</span>
+                    <span><i class="fas fa-phone"></i> Call: 0701644905</span>
+                    <span><i class="fas fa-clock"></i> Open 8am - 10pm</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">Shop Now</a>
+                    <a href="tel:0701644905" class="btn btn-secondary"><i class="fas fa-phone"></i> Call Seller</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="image.png" alt="Lynn's Store">
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            
+            <!-- Category Filter -->
+            <div class="category-tabs">
+                <button class="tab-btn active" onclick="filterProducts('all')">All</button>
+                <button class="tab-btn" onclick="filterProducts('electronics')">Electronics</button>
+                <button class="tab-btn" onclick="filterProducts('sweets')">Sweets & Biscuits</button>
+                <button class="tab-btn" onclick="filterProducts('essentials')">Daily Essentials</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>Call/WhatsApp</h3>
+                        <p><a href="tel:0701644905">0701644905</a></p>
+                        <p class="small">Available 8am - 10pm. make enquiry before paying </p>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-comment-dollar"></i>
+                        <h3>Payment</h3>
+                        <p>Po chi: <strong>0701644905</strong></p>
+                        <p class="small">Pay before delivery forward mpesa message to Whatsapp</p>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Pick Up</h3>
+                        <p>Tution Block 1-TBH</p>
+                                        </div>
+                </div>
+                <div class="contact-message">
+                    <h3>Can't find what you need?</h3>
+                    <p>Just message me! I can arrange anything you want.</p>
+                    <div class="quick-contacts">
+                        <a href="tel:0701644905" class="btn btn-primary"><i class="fas fa-phone"></i> Call Now</a>
+                        <a href="https://wa.me/254701644905" class="btn btn-secondary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOPPING CART SIDEBAR - WITH WORKING SUBMIT BUTTON -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-basket"></i> Your Cart</h3>
+            <button class="close-cart" onclick="toggleCart(event)">&times;</button>
+        </div>
+        
+        <!-- Cart Items -->
+        <div class="cart-items" id="cartItems"></div>
+        
+        <!-- Cart Footer with Form and Submit Button -->
+        <div class="cart-footer">
+            <h4 style="color: var(--primary-pink); margin-bottom: 15px;">📋 Delivery Details</h4>
+            
+            <!-- Delivery Form -->
+            <div class="delivery-form">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Your Full Name *</label>
+                    <input type="text" id="customerName" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Phone Number *</label>
+                    <input type="tel" id="customerPhone" placeholder="Your phone number" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label><i class="fas fa-bed"></i> Hostel *</label>
+                        <select id="customerHostel" required>
+                            <option value="">Select Hostel</option>
+                            <option value="Hostel A">Hostel A</option>
+                            <option value="Hostel B">Hostel B</option>
+                            <option value="Hostel C">Hostel C</option>
+                            <option value="Hostel D">Hostel D</option>
+                            <option value="Girls Hostel">Girls Hostel</option>
+                            <option value="Boys Hostel">Boys Hostel</option>
+                        </select>
+                    </div>
+                    <div class="form-group half">
+                        <label><i class="fas fa-door-open"></i> Room No. *</label>
+                        <input type="text" id="customerRoom" placeholder="Room number" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-info-circle"></i> Special Instructions</label>
+                    <textarea id="specialInstructions" placeholder="Anything specific? Let me know..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Payment Info -->
+            <div class="payment-reminder">
+                <i class="fas fa-hand-holding-usd"></i>
+                <div>
+                    <strong>Pay via Po chi</strong>
+                    <p style="font-size: 1.2rem; color: var(--primary-pink); font-weight: bold;">0701644905</p>
+                </div>
+            </div>
+            
+            <!-- Total Amount -->
+            <div class="cart-total">
+                <span>Total Amount:</span>
+                <span class="total-amount" id="cartTotal">₹0</span>
+            </div>
+            
+            <!-- SUBMIT BUTTON - CLEARLY VISIBLE -->
+            <button class="btn btn-primary submit-order-btn" onclick="validateAndShowPayment()" id="submitOrderBtn">
+                <i class="fas fa-check-circle"></i> PLACE ORDER NOW
+            </button>
+            
+            <p class="delivery-note">
+                <i class="fas fa-info-circle"></i> 
+                You'll pay after ordering
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-store"></i>
+                        <h3>Lynn's<span>Store</span></h3>
+                    </div>
+                    <p>Your hostel delivery partner for everything you need!</p>
+                    <p><strong>Po chi:</strong> 0701644905</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Delivery Info</h4>
+                    <ul>
+                        <li>Free delivery to all hostels</li>
+                        <li>Pay via Po chi: 0701644905</li>
+                        <li>Cash on delivery available</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lynn's Store. All for hostel students! ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
